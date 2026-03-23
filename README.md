@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ETL Agent — Autonomous Data Engineering Copilot 🤖
 **Snowflake Native · Domain-Agnostic · Powered by CoCo (Cortex Code)**
 
@@ -96,3 +97,7 @@ python scripts/submit_pipeline.py
 
 ## Built for
 Snowflake CoCo (Cortex Code) Hackathon
+=======
+# autonomous-finance-etl
+Snowflake autonomous ETL agent - CoCo Hackathon
+>>>>>>> 2c3a7955cb553561b607d81071036849f10ec207
