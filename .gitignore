@@ -1,0 +1,14 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+.vscode/
+.DS_Store
+*.log
+venv/
+.venv/
+~$*.xlsx
+~$*.xls
+*.egg-info/
+dist/
+build/

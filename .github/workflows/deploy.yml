@@ -1,0 +1,53 @@
+
+name: Deploy to Snowflake
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy SQL to Snowflake
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Detect changed SQL files
+        id: changes
+        run: |
+          git diff --name-only HEAD~1 HEAD > changed_files.txt
+          cat changed_files.txt
+          echo "sql_changed=$(grep -c '^sql/' changed_files.txt || true)" >> $GITHUB_OUTPUT
+
+      - name: Deploy SQL to Snowflake
+        if: steps.changes.outputs.sql_changed != '0'
+        env:
+          SNOWFLAKE_ACCOUNT:   ${{ secrets.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_USER:      ${{ secrets.SNOWFLAKE_USER }}
+          SNOWFLAKE_PASSWORD:  ${{ secrets.SNOWFLAKE_PASSWORD }}
+          SNOWFLAKE_ROLE:      ${{ secrets.SNOWFLAKE_ROLE }}
+          SNOWFLAKE_WAREHOUSE: ETL_AGENT_WH
+          SNOWFLAKE_DATABASE:  ETL_AGENT_DB
+        run: |
+          echo "SQL files changed — deploying..."
+          python scripts/deploy_sql.py
+
+      - name: Deployment summary
+        run: |
+          echo "✅ Deployment complete"
+          echo "   Repo: ${{ github.repository }}"
+          echo "   Commit: ${{ github.sha }}"
+          echo "   By: ${{ github.actor }}"
