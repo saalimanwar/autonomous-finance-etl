@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-# ETL Agent — Autonomous Data Engineering Copilot 🤖
+
+# ETL Agent — Autonomous Data Engineering
 **Snowflake Native · Domain-Agnostic · Powered by CoCo (Cortex Code)**
 
 A fully autonomous, self-configuring ETL pipeline system built 100% inside Snowflake.
@@ -100,4 +100,3 @@ Snowflake CoCo (Cortex Code) Hackathon
 =======
 # autonomous-finance-etl
 Snowflake autonomous ETL agent - CoCo Hackathon
->>>>>>> 2c3a7955cb553561b607d81071036849f10ec207
