@@ -2,6 +2,8 @@
 # ETL Agent — Autonomous Data Engineering
 **Snowflake Native · Domain-Agnostic · Powered by CoCo (Cortex Code)**
 
+Cortex Code Prompt : cortex code --skill SKILL.md
+
 A fully autonomous, self-configuring ETL pipeline system built 100% inside Snowflake.
 Users submit pipeline configurations via a Streamlit UI. CoCo reads the config,
 generates production-grade SQL, gets human approval, then deploys a Snowflake Task
